@@ -6,19 +6,21 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This allows e.g. providing the ethernet and mass storage functions on the
+Allow providing the Ethernet and mass storage functions on the USB
 peripheral port at the same time.
 
 Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+Upstream-Status: Submitted [https://patch.msgid.link/20241119-lxa-tac-gen3-v1-0-e0ab0a369372@pengutronix.de]
 ---
  arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi | 4 ++++
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-index c87fd96cbd91..0c1ee3b33c30 100644
+index a97708423ec8..d9b9d611a41e 100644
 --- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
 +++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-@@ -576,6 +576,10 @@ &usbotg_hs {
+@@ -580,6 +580,10 @@ &usbotg_hs {
  	vusb_d-supply = <&vdd_usb>;
  	vusb_a-supply = <&reg18>;
  

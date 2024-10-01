@@ -5,19 +5,21 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Some of the userspace software and tests depend on the can/i2c/spi devices
-having the same name on every boot.
-This may not always be the case based on e.g. parallel probe order.
+Some of the userspace software and tests depend on the can/i2c/spi
+devices having the same name on every boot. This may not always be the
+case based on e.g. parallel probe order.
 
 Assign static device numbers to all can/i2c/spi devices.
 
 Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+Upstream-Status: Submitted [https://patch.msgid.link/20241119-lxa-tac-gen3-v1-0-e0ab0a369372@pengutronix.de]
 ---
  arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi | 8 ++++++++
  1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
-index ca94a1e0ff66..a8d249bdeece 100644
+index abe4c7fe7678..a97708423ec8 100644
 --- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
 +++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
 @@ -16,12 +16,20 @@
