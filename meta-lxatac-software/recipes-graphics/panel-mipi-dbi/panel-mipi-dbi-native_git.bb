@@ -1,11 +1,9 @@
 SUMMARY = "Tool to make firmware files for the Linux display driver panel-mipi-dbi."
 LICENSE = "CC0-1.0"
 LIC_FILES_CHKSUM = "file://mipi-dbi-cmd;beginline=4;endline=13;md5=5e3d3f14cc87aa9e8976d728520cbcae"
-SRCREV = "374b15f78611c619c381c643c5b3a8b5d23f479b"
+SRCREV = "1cbd40135a8c7f25d7b444a7fac77fd3c3ad471e"
 
-SRC_URI = "git://github.com/notro/panel-mipi-dbi.git;protocol=https;branch=main \
-           file://0001-Use-python3-in-shebang.patch \
-           "
+SRC_URI = "git://github.com/notro/panel-mipi-dbi.git;protocol=https;branch=main"
 
 S = "${WORKDIR}/git"
 
