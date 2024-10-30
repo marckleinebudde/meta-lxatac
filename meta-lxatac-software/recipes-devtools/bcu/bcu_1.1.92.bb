@@ -20,3 +20,4 @@ DEPENDS = "curl libyaml libusb1 openssl libftdi"
 
 inherit cmake pkgconfig
 
+BBCLASSEXTEND = "native nativesdk"
