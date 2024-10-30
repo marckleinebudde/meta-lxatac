@@ -12,6 +12,6 @@ inherit cmake pkgconfig
 
 S = "${WORKDIR}/uuu-uuu_${PV}"
 
-DEPENDS = "libusb zlib bzip2 openssl tinyxml2"
+DEPENDS = "libusb zlib bzip2 openssl libtinyxml2"
 
 BBCLASSEXTEND = "native nativesdk"
