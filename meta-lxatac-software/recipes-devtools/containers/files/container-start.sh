@@ -9,7 +9,9 @@ else
         echo "INFO: No Debian container present. Starting a new one using Podman."
         echo "ATTENTION: Container installation might require Internet access and correct system time!"
         hostname="$(hostname)"
-        podman run -it --name=debian --hostname "${hostname}-debian" --privileged --network=host --volume=/home/:/home/ --volume=/srv/:/srv/ debian
+        podman run -it --name=debian --hostname "${hostname}-debian" --privileged --network=host \
+		--volume=/home/:/home/ --volume=/srv/:/srv/ --volume=/var/cache/labgrid/:/var/cache/labgrid/ \
+		debian
 
 	podmanerr=$?
 
