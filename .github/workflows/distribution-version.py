@@ -54,15 +54,15 @@ def check_version(distro_version):
         assert version_bb["dev"] == ""
         assert version_tag_numeric == version_bb_numeric
 
-    elif version_bb["dev"] == "":
-        # Release candidates already have the next release version set,
-        # but it must be newer than any tag in the current commit's history.
-        assert version_bb_numeric > version_tag_numeric
-
-    else:
+    elif version_bb["dev"]:
         # Non release candidate versions should have the previous tagged
         # version number plus the +dev suffix set.
         assert version_bb_numeric == version_tag_numeric
+
+    else:
+        # Release candidates already have the next release version set,
+        # but it must be newer than any tag in the current commit's history.
+        assert version_bb_numeric > version_tag_numeric
 
 
 def check_codename(codename):
