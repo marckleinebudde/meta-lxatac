@@ -1,0 +1,6 @@
+# This matches the original fs-perms.txt.
+# The only difference is that permissions were restricted (0755 -> 0500)
+# since the directory should only be used as a mount point.
+# This will however not stop processes running as root from writing to the
+# directory due to CAP_DAC_OVERRIDE.
+/srv				0500	root	root	false - - -
