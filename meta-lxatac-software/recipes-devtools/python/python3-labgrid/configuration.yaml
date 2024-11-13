@@ -71,6 +71,9 @@ lxatac-usb-ports-p{{idx}}:
   IMXUSBLoader:
     match:
       'ID_PATH': '{{sysfs}}'
+  RKUSBLoader:
+    match:
+      'ID_PATH': '{{sysfs}}'
   LXAUSBMux:
     match:
       '@ID_PATH': '{{sysfs}}'
