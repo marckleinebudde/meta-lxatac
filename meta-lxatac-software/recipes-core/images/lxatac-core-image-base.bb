@@ -106,6 +106,7 @@ IMAGE_INSTALL:append = "\
     python3-venv \
     rauc \
     ripgrep \
+    rkdeveloptool \
     rsync \
     screen \
     ser2net \

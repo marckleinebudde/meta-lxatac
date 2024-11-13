@@ -1,0 +1,29 @@
+From 99795f8cc8137fef62ca72707df972bf7c787027 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
+Date: Tue, 12 Nov 2024 11:32:52 +0100
+Subject: [PATCH] Makefile: disable format-truncation errors
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The build fails with current compilers due to format-truncation errors.
+Ignore them for now.
+
+Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index 1b6385d..81aebf6 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -3,7 +3,7 @@
+ SUBDIRS =
+ DIST_SUBDIRS = cfg
+ 
+-AM_CPPFLAGS = -Wall -Werror -Wextra -Wreturn-type -fno-strict-aliasing -D_FILE_OFFSET_BITS=64 -D_LARGE_FILE $(LIBUSB1_CFLAGS)
++AM_CPPFLAGS = -Wall -Werror -Wno-format-truncation -Wextra -Wreturn-type -fno-strict-aliasing -D_FILE_OFFSET_BITS=64 -D_LARGE_FILE $(LIBUSB1_CFLAGS)
+ 
+ bin_PROGRAMS = rkdeveloptool
+ rkdeveloptool_SOURCES = main.cpp \
