@@ -1,0 +1,107 @@
+From 904d7b7c89313c817d82720026d7b834825bc415 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>
+Date: Mon, 11 Nov 2024 13:49:06 +0100
+Subject: [PATCH] contrib/systemd: use multi-user.target instead of
+ default.target
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The systemd documentation[1] says the following about using
+`default.target` as `WantedBy=` in service files:
+
+  For typical unit files please set "WantedBy=" to a regular target
+  (like multi-user.target or graphical.target), instead of default.target,
+  since such a service will also be run on special boots like on system
+  update, emergency boot ...
+
+The mentioned "system update" special boots refer to
+`systemd.offline-updates`[2] a mechanism that enables doing a special
+minimalistic boot to run e.g. migration scripts after installing an
+update (using a package manager or an image based updater like e.g. RAUC)
+and before the first boot of the updated system.
+
+To prevent conflicts between normal services on the system and migration
+scripts, normal services should not be started for these special boots.
+
+For this to work normal services may not use `WantedBy=default.target`,
+because according to the documentation[2] the `system-update.target`
+_becomes_ the `default.target` for system-update boots:
+
+  3) Very early in the new boot systemd-system-update-generator(8) checks
+     whether /system-update or /etc/system-update exists.
+     If so, it (temporarily and for this boot only) redirects
+     (i.e. symlinks) default.target to system-update.target,
+     a special target that pulls in the base system
+     (i.e. sysinit.target, so that all file systems are mounted but little
+     else) and the system update units.
+
+Use `WantedBy=multi-user.target` target instead of `default.target` to
+enable the use of `system-update.target`.
+
+[1]: https://www.freedesktop.org/software/systemd/man/latest/systemd.special.html#default.target
+[2]: https://www.freedesktop.org/software/systemd/man/latest/systemd.offline-updates.html#
+
+Upstream-Status: Submitted https://github.com/containers/podman/pull/24524
+Signed-off-by: Leonard Göhrs <l.goehrs@pengutronix.de>
+---
+ contrib/systemd/system/podman-auto-update.service.in     | 2 +-
+ contrib/systemd/system/podman-clean-transient.service.in | 2 +-
+ contrib/systemd/system/podman-kube@.service.in           | 2 +-
+ contrib/systemd/system/podman-restart.service.in         | 2 +-
+ contrib/systemd/system/podman.service.in                 | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/import/contrib/systemd/auto-update/podman-auto-update.service.in b/src/import/contrib/systemd/auto-update/podman-auto-update.service.in
+index a703912e2..992340abd 100644
+--- a/src/import/contrib/systemd/auto-update/podman-auto-update.service.in
++++ b/src/import/contrib/systemd/auto-update/podman-auto-update.service.in
+@@ -10,4 +10,4 @@ ExecStart=@@PODMAN@@ auto-update
+ ExecStartPost=@@PODMAN@@ image prune -f
+ 
+ [Install]
+-WantedBy=default.target
++WantedBy=multi-user.target
+diff --git a/src/import/contrib/systemd/system/podman-clean-transient.service.in b/src/import/contrib/systemd/system/podman-clean-transient.service.in
+index 88f5ec823..164bcd480 100644
+--- a/src/import/contrib/systemd/system/podman-clean-transient.service.in
++++ b/src/import/contrib/systemd/system/podman-clean-transient.service.in
+@@ -18,4 +18,4 @@ Type=oneshot
+ ExecStart=@@PODMAN@@ system prune --external
+ 
+ [Install]
+-WantedBy=default.target
++WantedBy=multi-user.target
+diff --git a/src/import/contrib/systemd/system/podman-kube@.service.in b/src/import/contrib/systemd/system/podman-kube@.service.in
+index 7c9ead1c6..47754d92f 100644
+--- a/src/import/contrib/systemd/system/podman-kube@.service.in
++++ b/src/import/contrib/systemd/system/podman-kube@.service.in
+@@ -14,4 +14,4 @@ Type=notify
+ NotifyAccess=all
+ 
+ [Install]
+-WantedBy=default.target
++WantedBy=multi-user.target
+diff --git a/src/import/contrib/systemd/system/podman-restart.service.in b/src/import/contrib/systemd/system/podman-restart.service.in
+index de0249381..bc85feee0 100644
+--- a/src/import/contrib/systemd/system/podman-restart.service.in
++++ b/src/import/contrib/systemd/system/podman-restart.service.in
+@@ -13,4 +13,4 @@ ExecStart=@@PODMAN@@ $LOGGING start --all --filter restart-policy=always
+ ExecStop=/bin/sh -c '@@PODMAN@@ $LOGGING stop $(@@PODMAN@@ container ls --filter restart-policy=always -q)'
+ 
+ [Install]
+-WantedBy=default.target
++WantedBy=multi-user.target
+diff --git a/src/import/contrib/systemd/system/podman.service.in b/src/import/contrib/systemd/system/podman.service.in
+index c1a5952b5..5fe8ab428 100644
+--- a/src/import/contrib/systemd/system/podman.service.in
++++ b/src/import/contrib/systemd/system/podman.service.in
+@@ -13,4 +13,4 @@ Environment=LOGGING="--log-level=info"
+ ExecStart=@@PODMAN@@ $LOGGING system service
+ 
+ [Install]
+-WantedBy=default.target
++WantedBy=multi-user.target
+-- 
+2.39.5
+
