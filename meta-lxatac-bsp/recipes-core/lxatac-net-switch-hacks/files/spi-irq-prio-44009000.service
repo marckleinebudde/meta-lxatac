@@ -1,0 +1,11 @@
+[Unit]
+Description=Increase kernel thread priority for the SPI bus to prevent timeouts
+BindsTo=sys-devices-platform-soc-5c007000.bus-44009000.spi.device
+After=sys-devices-platform-soc-5c007000.bus-44009000.spi.device
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c "chrt --pid 55 `pgrep irq/[0-9]+-44009000`"
+
+[Install]
+WantedBy=multi-user.target

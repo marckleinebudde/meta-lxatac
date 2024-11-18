@@ -1,0 +1,1 @@
+SUBSYSTEM=="platform", DRIVER=="spi_stm32", TAG+="systemd"
