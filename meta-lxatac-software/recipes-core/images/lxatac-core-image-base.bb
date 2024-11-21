@@ -85,8 +85,7 @@ IMAGE_INSTALL:append = "\
     microcom \
     mmc-utils \
     nano \
-    networkmanager-nmcli \
-    networkmanager-nmtui \
+    networkmanager \
     nfs-utils-client \
     nftables \
     openocd \
