@@ -6,6 +6,7 @@ The TLV command does the equivalent of having a "barebox,tlv"
 compatible node point at the file. It's meant as a debugging aid.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  commands/Kconfig  | 12 ++++++++++++
  commands/Makefile |  1 +

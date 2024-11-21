@@ -8,6 +8,7 @@ is limited to already specified tags, it can be extended later on,
 without modifying the bootloader binary.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  common/Kconfig        |  24 +++++++
  common/Makefile       |   1 +

@@ -6,6 +6,7 @@ The LXA TLV format is stored onto the EEPROM of either the Baseboard or
 Powerboard. Its contents are mainly for use in Linux userspace.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  common/boards/Kconfig                  |  5 ++
  common/boards/Makefile                 |  1 +
