@@ -18,6 +18,7 @@ handles both cases already), but it allows future board code to consult
 the list to check which Ethernet addresses were actually assigned.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  include/net.h |  9 +++++++++
  net/eth.c     | 11 ++---------

@@ -15,6 +15,7 @@ Example uses:
   ./scripts/bareboxtlv -m 0xcfe01001 -v tlv.blob && echo CRC correct
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  scripts/.gitignore                |   2 +
  scripts/Makefile                  |   2 +

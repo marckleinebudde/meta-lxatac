@@ -9,6 +9,7 @@ one more function to compare a text string with binary. This will be
 used in a follow up commit.
 
 Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Upstream-Status: Pending
 ---
  include/net.h |  2 ++
  net/lib.c     | 17 +++++++++++++++++
