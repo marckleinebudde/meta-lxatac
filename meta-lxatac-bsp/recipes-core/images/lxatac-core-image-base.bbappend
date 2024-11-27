@@ -15,4 +15,5 @@ IMAGE_INSTALL:append = "\
     kernel-modules \
     kernel-devicetree \
     dt-utils-barebox-state \
+    lxatac-net-switch-hacks \
 "
